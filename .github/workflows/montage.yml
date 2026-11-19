@@ -1,7 +1,7 @@
 name: montage
 on:
   schedule:
-    - cron: '0 7,11,15 * * *'.
+    - cron: '0 7,11,15 * * *'
   workflow_dispatch:
     inputs:
       drive_id:
