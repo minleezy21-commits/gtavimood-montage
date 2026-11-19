@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ID="$1"; NAME="$2"; FMT="$3"; CAPTION="$4"; MINSEC="${5:-0}"; OUTRO="${6:-@gtavimood}"
-pip install -q gdown
+pip install -q --break-system-packages gdown
 gdown "https://drive.google.com/uc?id=${ID}" -O src.mp4
 
 if [ "$FMT" = vertical ]; then W=1080; H=1920; FS=56; else W=1920; H=1080; FS=44; fi
