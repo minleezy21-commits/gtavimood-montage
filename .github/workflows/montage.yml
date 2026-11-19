@@ -1,0 +1,39 @@
+name: montage
+on:
+  workflow_dispatch:
+    inputs:
+      drive_id:
+        description: ID du fichier Google Drive
+        required: true
+      name:
+        description: Nom du montage (sans espace)
+        required: true
+      format:
+        description: vertical ou horizontal
+        default: vertical
+      caption:
+        description: Legende affichee en bas
+        default: GTA VI MOOD
+      min_seconds:
+        description: Duree minimale en secondes (60 pour TikTok, sinon 0)
+        default: '0'
+      outro:
+        description: Texte de l outro
+        default: '@gtavimood'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Montage
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IN_ID: ${{ inputs.drive_id }}
+          IN_NAME: ${{ inputs.name }}
+          IN_FMT: ${{ inputs.format }}
+          IN_CAP: ${{ inputs.caption }}
+          IN_MIN: ${{ inputs.min_seconds }}
+          IN_OUTRO: ${{ inputs.outro }}
+        run: bash make.sh "$IN_ID" "$IN_NAME" "$IN_FMT" "$IN_CAP" "$IN_MIN" "$IN_OUTRO"
