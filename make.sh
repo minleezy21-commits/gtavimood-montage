@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
 ID="$1"; NAME="$2"; FMT="$3"; CAPTION="$4"; MINSEC="${5:-0}"; OUTRO="${6:-@gtavimood}"
 pip install -q --break-system-packages gdown
 gdown "https://drive.google.com/uc?id=${ID}" -O src.mp4
